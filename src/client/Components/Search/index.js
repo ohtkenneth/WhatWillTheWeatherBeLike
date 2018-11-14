@@ -28,6 +28,7 @@ export default class Search extends React.Component {
     const location = window.autocomplete.getPlace();
     const startIndex = location.adr_address.indexOf('region') + 8;
 
+    // add 1 day to get end date since weatherbit api needs 1 day range over two dates
     const options = {
       url: 'https://api.weatherbit.io/v2.0/history/daily',
       method: 'get',
