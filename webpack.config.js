@@ -1,5 +1,5 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'client', 'index.js'),
@@ -17,14 +17,21 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-            "style-loader", // creates style nodes from JS strings
-            {
-              loader: 'css-loader',
-              options: {
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              }
-            },
+            'style-loader',
+            'css-loader',
             "sass-loader" // compiles Sass to CSS, using Node Sass by default
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          {
+            loader: 'css-loader',
+            options: {
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          }
         ]
       },
       {
@@ -49,6 +56,6 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    new MiniCssExtractPlugin('styles.css'),
   ]
 }
