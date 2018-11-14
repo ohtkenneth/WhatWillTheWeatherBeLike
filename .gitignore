@@ -7,6 +7,7 @@ yarn-error.log*
 
 bundle.js
 style.css
+config.js
 
 # Runtime data
 pids

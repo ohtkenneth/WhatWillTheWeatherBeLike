@@ -29,7 +29,7 @@
           types: ['(cities)'],
           componentRestrictions: { country: 'us' },
         };
-        const autocomplete = new google.maps.places.Autocomplete(document.getElementById('search'), options);
+        window.autocomplete = new google.maps.places.Autocomplete(document.getElementById('search'), options);
       }
     </script>
   </body>
