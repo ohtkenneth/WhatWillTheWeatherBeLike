@@ -1,0 +1,46 @@
+{
+  "name": "whatwilltheweatherbelike",
+  "version": "1.0.0",
+  "description": "A simple app to help you know what the weather will be like in the future based on historical data",
+  "main": "index.js",
+  "scripts": {
+    "build:prod": "webpack --mode production",
+    "server:dev": "webpack-dev-server --config ./webpack.config.js --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohtkenneth/WhatWillTheWeatherBeLike.git"
+  },
+  "keywords": [
+    "Weather",
+    "Predictive",
+    "Historical"
+  ],
+  "author": "Kenneth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ohtkenneth/WhatWillTheWeatherBeLike/issues"
+  },
+  "homepage": "https://github.com/ohtkenneth/WhatWillTheWeatherBeLike#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "node-sass": "^4.10.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}

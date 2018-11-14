@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+bundle.js
+style.css
+
 # Runtime data
 pids
 *.pid
