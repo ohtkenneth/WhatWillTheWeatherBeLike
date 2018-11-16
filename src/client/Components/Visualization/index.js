@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
+import Hourly from './Hourly/index';
 
 import '../weather-icons/css/weather-icons.css';
 
@@ -49,6 +50,11 @@ const Visualization = ({ data }) => {
           options={ options }
           maintainAspectRatio= {true}
         />
+        {
+          data.map((year, index) => (
+            <Hourly data={ year.weather[0] }/>
+          ))
+        }
       </div>
     </section>
   );

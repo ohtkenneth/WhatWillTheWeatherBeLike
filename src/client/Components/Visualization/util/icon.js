@@ -1,31 +1,31 @@
-export default function weatherIcon({ maxTemp, clouds }) {
+export default function weatherIcon(desc, time) {
   // sunny, cloudy, etc
-  if (clouds >= 90) {
-    return {
-      type: 'EH',
-      iconClass: 'wi wi-cloudy',
-    }
-  } else if (clouds >= 70 && clouds < 90) {
-    return {
-      type: 'High',
-      iconClass: 'wi wi-day-cloudy-high'
-    }
-  } else if (clouds >= 50 && clouds < 70) {
-    return {
-      type: 'Medium',
-      iconClass: 'wi wi-day-cloudy'
-    }
-  } else if (clouds >= 30 && clouds < 50) {
-    return {
-      type: 'Low',
-      iconClass: 'wi wi-day-sunny-overcast'
-    }
+  let weatherIconClass = '';
+  switch (desc) {
+    case 'Sunny':
+      weatherIconClass = 'wi wi-day-sunny';
+      break;
+    case 'Clear':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-clear' : 'wi wi-day-sunny';
+      break;
+    case 'Partly cloudy':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-partly-cloudy' : 'wi wi-day-cloudy';
+      break;
+    case 'Cloudy':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-cloudy-high';
+      break; 
+    case 'Light rain shower':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-showers' : 'wi wi-day-showers';
+      break;
+    case 'Moderate or heavy rain shower':
+    case 'Moderate rain at times':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-rain' : 'wi wi-day-rain';
+      break;
+    case 'Patchy light rain':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-rain-mix' : 'wi wi-day-rain-mix';
+      break;
+      
   }
 
-  return {
-    type: 'EL',
-    iconClass: 'wi wi-day-sunny',
-  }
-
-  
+  return weatherIconClass;
 }
