@@ -26,12 +26,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           "style-loader", // creates style nodes from JS strings
-          {
-            loader: 'css-loader',
-            options: {
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
-          }
+          'css-loader'
         ]
       },
       {
@@ -49,6 +44,10 @@ module.exports = {
             limit: 8192
           }
         }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+		    loader: "file-loader"
       }
     ]
   },

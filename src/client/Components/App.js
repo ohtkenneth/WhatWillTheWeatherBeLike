@@ -1,14 +1,31 @@
 import React from 'react';
-import Search from './Search/index';
-
+import { connect } from 'react-redux';
+import ErrorBoundry from './ErrorBoundry/index';
+import VisibleSearch from './Search/duck/container';
+// import VisibleVisualization from './Visualization/duck/container';
+import Visualization from './Visualization/index';
 import './sass/main.scss';
 
-const App = () => {
+const mapStateToProps = (state) => {
+  return {
+    data: state.searchReducer.data,
+  };
+};
+
+const App = ({ data }) => {
+  console.log(data);
   return (
     <div className="app">
-      <Search />
+      <ErrorBoundry>
+        <VisibleSearch />
+        {
+          data.length > 0 ? <Visualization data={ data } /> : void 0
+        }
+
+      </ErrorBoundry>
     </div>
   );
 };
 
-export default App;
+// export default App;
+export default connect(mapStateToProps, null)(App);
