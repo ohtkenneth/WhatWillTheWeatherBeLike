@@ -52,7 +52,7 @@ const Visualization = ({ data }) => {
         />
         {
           data.map((year, index) => (
-            <Hourly data={ year.weather[0] }/>
+            <Hourly key={ 'visual' + year.request[0].query + index } data={ year.weather[0] }/>
           ))
         }
       </div>
