@@ -5,12 +5,13 @@ import { connect } from 'http2';
 describe('Search component', () => {
   it('should successfully retrieve data from weatherapi', async (done) => {
     expect.assertions(2);
-    const date = moment();
 
-    const result = await getWeather({ date, location: 'Los Angeles, Ca'});
+    let date = moment();
+    const results = await getWeather({date, location: 'los+angeles,ca' });
 
-    expect(result.status).toBe(200);
-    expect(result.data).toBeTruthy();
+    // results should be greater than 1 since getting >= 2 years of data
+    expect(results.length).toBeGreaterThan(1);
+    expect(results.every(result => result.status === 200)).toBe(true);
     done();
   });
 });
