@@ -7,7 +7,7 @@ body {
   padding: 3rem;
 }
 
-.heading-primary {
+.heading--primary {
   color: $color-white;
   text-transform: uppercase;
   backface-visibility: hidden;
@@ -35,27 +35,10 @@ body {
   }
 }
 
-.heading-secondary {
-  font-size: 3.5rem;
-  text-transform: uppercase;
+.heading--secondary {
+  font-size: $font-size-secondary;
   font-weight: 700;
   display: inline-block;
-  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-  -webkit-background-clip: text;
-  color: transparent;
-  letter-spacing: 2px; 
-  transition: all .2s;
-
-  &:hover {
-    transform: skewY(2deg) skewX(15deg) scale(1.1);
-    text-shadow: .5rem 1rem 2rem rgba($color-black, .3);
-  }
-}
-
-.heading-tertiary {
-  font-size: $default-font-size;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 
 .paragraph {
@@ -68,4 +51,15 @@ body {
 
 .wi {
   font-size: 5rem;
+  padding: 1.5rem 0;
+}
+
+.heading--tertiary {
+  font-size: $font-size-tertiary;
+  font-weight: 500;
+  padding: 1.5rem 0;
+}
+
+.heading--quaternary {
+  font-size: $font-size-quarternary;
 }

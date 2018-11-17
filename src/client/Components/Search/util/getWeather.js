@@ -4,7 +4,6 @@ import config from '../../../../config';
 export default async function getWeather({ date, location }) {
   // .format('YYYY-MM-DD')
   // base options to use to get
-  // TODO: DRY up this code
   let promisesToGet = [];
 
   const options1 = {
@@ -29,8 +28,13 @@ export default async function getWeather({ date, location }) {
   );
 
   try {
-    const result = await Promise.all(promisesToGet);
-    return result;
+    let results = await Promise.all(promisesToGet);
+    // map results with inputted location since not returned from api
+    results = results.map(result => {
+      result.data.data.request[0].location = location;
+      return result;
+    });
+    return results;
   } catch(err) {
     return err;
   } 

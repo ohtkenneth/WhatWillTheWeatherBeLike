@@ -12,15 +12,11 @@ const Visualization = ({ data }) => {
 
   return (
     <section className="visualization">
-      {/* <Section data={ sixHourly }/>
-      <Section data={ threeHourly }/> */}
-      {
-        data.map(year => (
-          <div>
-            <Section data={ [sixHourly1, sixHourly2] }/>
-            <Section data={  [threeHourly1, threeHourly2 ]}/>
-          </div>
-        ))
+      <h1 className="heading--secondary">{ data[0].request[0].query }</h1>
+        <div>
+          <Section data={ [sixHourly1, sixHourly2] }/>
+          <Section data={  [threeHourly1, threeHourly2 ]}/>
+        </div>
       }
     </section>
   );

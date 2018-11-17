@@ -5,12 +5,12 @@ import { Bar, Line } from 'react-chartjs-2';
 // should work for multiple datasets
 const LineGraph = ({ data }) => {
   // data will be array of HOURLY data
-  const lineColors = ['rgba(0,255,0,.3)', 'rgba(0,0,255,.3)', 'rgba(255,0,0,.5)', ];
+  const lineColors = ['rgba(0,218,87,.6)', 'rgba(0,122,255,.6)', 'rgba(180,0,144,.6)', ];
   const lineChartData = {
     labels: data[0].hourly.map(hour => hour.timeString),
     datasets: data.map((year, index) => (
       {
-        label: year.date,
+        label: new Date(year.date).toDateString(),
         xAxisId: 'Hour',
         yAxisId: 'Temperature',
         borderColor: lineColors[index],
