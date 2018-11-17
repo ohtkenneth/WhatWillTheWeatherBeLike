@@ -23,6 +23,7 @@ export default function weatherIcon(desc, time) {
       weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-rain' : 'wi wi-day-rain';
       break;
     case 'Patchy light rain':
+    case 'Patchy rain possible':
       weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-rain-mix' : 'wi wi-day-rain-mix';
       break;
     case 'Mist':
@@ -31,6 +32,18 @@ export default function weatherIcon(desc, time) {
       weatherIconClass = Number(time) > 9 ? 'wi wi-night-fog' : 'wi wi-day-haze';
       break;
     case 'Overcast':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast';
+      break;
+    case 'Patchy light snow':
+    case 'Light snow':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast';
+      break;
+    case 'Moderate snow':
+    case 'Moderate or heavy snow':
+    case 'Heavy snow':
+      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast';
+      break;
+    case 'Moderate or heavy snow with thunder':
       weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast';
       break;
     default:

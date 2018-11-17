@@ -4,12 +4,17 @@ import Details from '../Details/index';
 
 const Section = ({ data }) => {
   return (
-    <section className="section">
+    <div className="visualization__section">
       <LineGraph
         data={ data }
       />
-      <Details data={ data }/>
-    </section>
+      {/* <Details data={ data }/> */}
+      {
+        data.map(year => (
+          <Details data={ year } />
+        ))
+      }
+    </div>
   );
 };
 

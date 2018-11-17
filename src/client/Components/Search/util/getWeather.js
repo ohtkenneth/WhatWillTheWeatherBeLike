@@ -6,6 +6,7 @@ export default async function getWeather({ date, location }) {
   // base options to use to get
   // TODO: DRY up this code
   let promisesToGet = [];
+
   const options1 = {
     url: 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx',
     method: 'get',
@@ -18,18 +19,10 @@ export default async function getWeather({ date, location }) {
     }
   };
 
-  const options2 = {
-    url: 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx',
-    method: 'get',
-    params: {
-      q: location,
-      format: 'json',
-      date: date.subtract(1, 'years').format('YYYY-MM-DD'),
-      key: config.weather,
-    }
-  };
-  
-  // need to create new options for two unique axios options
+  // deep clone options1
+  const options2 = JSON.parse(JSON.stringify(options1));
+  options2.params.date = date.subtract(1, 'years').format('YYYY-MM-DD');
+
   promisesToGet.push(
     axios(options1),
     axios(options2),

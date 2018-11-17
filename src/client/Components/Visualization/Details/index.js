@@ -2,15 +2,22 @@ import React from 'react';
 import weatherIconClass from '../util/weatherIconClass';
 // overall icons for every 3 hours
 const Details = ({ data }) => {
+  console.log(data);
   return (
-    <section className="hourly">
-      {/* <h3>{ data.date + 'Hourly data' }</h3>
-      <h6>Max Temp: { data.maxtempF + 'F' }</h6>
-      <h6>Min Temp: { data.mintempF + 'F' }</h6>
-      <h6>Total snowfall: { data.totalSnow_cm === '0.0' ? 'None!' : data.totalSnow_cm + 'cm' }</h6> */}
-      {
+    <div className="visualization__section--hourly">
+      <div className="visualization__section--hourly--general">
+        <h1>Date: { data.date }</h1>
+        <h6>Max Temp: { data.maxtempF + 'F' }</h6>
+        <h6>Min Temp: { data.mintempF + 'F' }</h6>
+        <h6>Total snowfall: { data.totalSnow_cm === '0.0' ? 'None!' : data.totalSnow_cm + 'cm' }</h6>
+      </div>
+      <div className="visualization__section--details">
+      { 
         data.hourly.map((hour, index) => (
-          <div key={ 'hourly' + index }>
+          <div className="hourly__details" key={ 'hourly' + index }>
+            <div className="hourly__time">
+              { hour.timeString }
+            </div>
             <div className="hourly__desc">
               { hour.weatherDesc[0].value } <i className={ weatherIconClass(hour.weatherDesc[0].value) }></i>
             </div>
@@ -32,8 +39,8 @@ const Details = ({ data }) => {
           </div>
         ))
       }
-      
-    </section>
+      </div>
+    </div>
   )
 };
 

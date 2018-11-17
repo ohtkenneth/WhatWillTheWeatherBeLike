@@ -3,15 +3,25 @@ import mapData from './util/mapData';
 import Section from './Section/index';
 
 const Visualization = ({ data }) => {
-  const sixHourly = mapData(data[0].weather[0], 6);
-  const threeHourly = mapData(data[0].weather[0], 3);
+  console.log('data from visua', data);
+  const sixHourly1 = mapData(data[0].weather[0], 6);
+  const threeHourly1 = mapData(data[0].weather[0], 3);
+  const sixHourly2 = mapData(data[1].weather[0], 6);
+  const threeHourly2 = mapData(data[1].weather[0], 3);
   // create a dataset for each year searched for in getWeather.js
 
   return (
-    <section>
-      <i className="wi wi-night-sleet"></i>
-      <Section data={ sixHourly }/>
-      <Section data={ threeHourly }/>
+    <section className="visualization">
+      {/* <Section data={ sixHourly }/>
+      <Section data={ threeHourly }/> */}
+      {
+        data.map(year => (
+          <div>
+            <Section data={ [sixHourly1, sixHourly2] }/>
+            <Section data={  [threeHourly1, threeHourly2 ]}/>
+          </div>
+        ))
+      }
     </section>
   );
 };

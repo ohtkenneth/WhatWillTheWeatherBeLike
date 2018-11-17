@@ -1,0 +1,17 @@
+.visualization__section {
+  &--hourly {
+    display: flex;
+    flex-direction: column;
+
+    &--general {
+      display: flex;
+    }
+  }
+  &--details {
+    display: flex;
+  }
+  .hourly__details {
+    display: flex;
+    flex-direction: column;
+  }
+}
