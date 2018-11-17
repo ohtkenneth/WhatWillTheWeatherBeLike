@@ -14,6 +14,7 @@ export default async function getWeather({ date, location }) {
       format: 'json',
       date: date.subtract(1, 'years').format('YYYY-MM-DD'),
       key: config.weather,
+      tp: 1,
     }
   };
 
