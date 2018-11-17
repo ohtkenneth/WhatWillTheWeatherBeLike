@@ -12,7 +12,7 @@ const Visualization = ({ data }) => {
 
   return (
     <section className="visualization">
-      <h1 className="heading--secondary">{ data[0].request[0].query }</h1>
+      <h1 className="heading--primary">{ data[0].request[0].query }</h1>
         <div>
           <Section data={ [sixHourly1, sixHourly2] }/>
           <Section data={  [threeHourly1, threeHourly2 ]}/>

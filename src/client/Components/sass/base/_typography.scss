@@ -8,37 +8,25 @@ body {
 }
 
 .heading--primary {
-  color: $color-white;
-  text-transform: uppercase;
-  backface-visibility: hidden;
-  margin-bottom: 6rem;
-
-  &--main {
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-    animation-name: moveInLeft;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-out;
-  }
-  
-  &--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.74rem;
-  
-    animation-name: moveInRight;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-out;
-  }
+  color: $color-primary;
+  font-size: $font-size-primary;
+  font-weight: 700;
 }
 
 .heading--secondary {
   font-size: $font-size-secondary;
-  font-weight: 700;
+  font-weight: 600;
   display: inline-block;
+}
+
+.heading--tertiary {
+  font-size: $font-size-tertiary;
+  font-weight: 500;
+  padding: 1.5rem 0;
+}
+
+.heading--quaternary {
+  font-size: $font-size-quaternary;
 }
 
 .paragraph {
@@ -52,14 +40,4 @@ body {
 .wi {
   font-size: 5rem;
   padding: 1.5rem 0;
-}
-
-.heading--tertiary {
-  font-size: $font-size-tertiary;
-  font-weight: 500;
-  padding: 1.5rem 0;
-}
-
-.heading--quaternary {
-  font-size: $font-size-quarternary;
 }

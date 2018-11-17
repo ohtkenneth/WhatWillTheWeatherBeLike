@@ -1,19 +1,23 @@
 .visualization {
   &__section {
     border: 1px solid $color-primary;
-    margin: 5rem 0;
+    margin-bottom: 5rem;
 
-    .details {
-      padding: 3rem;
+    &__content {
+      padding: 2rem;
       
-      &--general {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-      }
-      &--specific {
-        display: flex;
-        justify-content: space-around;
+      .details {
+        padding: 3rem;
+  
+        &--general {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+        }
+        &--specific {
+          display: flex;
+          justify-content: space-around;
+        }
       }
     }
   }
