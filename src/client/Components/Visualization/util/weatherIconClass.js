@@ -1,51 +1,51 @@
 export default function weatherIcon(desc, time) {
   // sunny, cloudy, etc
-  console.log(time);
+  const isDay = dayOrNight(time);
   let weatherIconClass = '';
   switch (desc) {
     case 'Sunny':
       weatherIconClass = 'wi wi-day-sunny u-color-temp-high';
       break;
     case 'Clear':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-clear' : 'wi wi-day-sunny u-color-temp-high';
+      weatherIconClass = isDay ? 'wi wi-day-sunny u-color-temp-high' : 'wi wi-night-clear';
       break;
     case 'Partly cloudy':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-partly-cloudy' : 'wi wi-day-cloudy u-color-temp-medium';
+      weatherIconClass = isDay ? 'wi wi-day-cloudy u-color-temp-medium' : 'wi wi-night-partly-cloudy';
       break;
     case 'Cloudy':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-cloudy-high u-color-temp-medium';
+      weatherIconClass = isDay ? 'wi wi-day-cloudy-high u-color-temp-medium' : 'wi wi-night-alt-cloudy';
       break; 
     case 'Light rain shower':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-showers' : 'wi wi-day-showers u-color-temp-medium';
+      weatherIconClass = isDay ? 'wi wi-day-showers u-color-temp-low' : 'wi wi-night-alt-showers u-color-temp-low-night';
       break;
     case 'Moderate or heavy rain shower':
     case 'Moderate rain at times':
     case 'Moderate rain':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-rain' : 'wi wi-day-rain u-color-temp-low';
+      weatherIconClass = isDay ? 'wi wi-day-rain u-color-temp-low' : 'wi wi-night-alt-rain u-color-temp-low-night';
       break;
     case 'Patchy light rain':
     case 'Patchy rain possible':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-rain-mix' : 'wi wi-day-rain-mix u-color-temp-low';
+      weatherIconClass = isDay ? 'wi wi-day-rain-mix u-color-temp-low' : 'wi wi-night-alt-rain-mix u-color-temp-low-night';
       break;
     case 'Mist':
     case 'Fog':
     case 'Freezing fog':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-fog' : 'wi wi-day-haze u-color-temp-low';
+      weatherIconClass = isDay ? 'wi wi-day-haze u-color-temp-low' : 'wi wi-night-fog u-color-temp-low-night';
       break;
     case 'Overcast':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast u-color-temp-medium';
+      weatherIconClass = isDay ? 'wi wi-day-sunny-overcast u-color-temp-medium' : 'wi wi-night-alt-cloudy';
       break;
     case 'Patchy light snow':
     case 'Light snow':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast u-color-temp-medium';
+      weatherIconClass = isDay ? 'wi wi-day-snow u-color-temp-medium' : 'wi wi-night-alt-snow u-color-temp-low-night';
       break;
     case 'Moderate snow':
     case 'Moderate or heavy snow':
     case 'Heavy snow':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast u-color-temp-low';
+      weatherIconClass = isDay ? 'wi wi-day-snow-wind u-color-temp-low' : 'wi wi-night-alt-showers u-color-temp-low';
       break;
     case 'Moderate or heavy snow with thunder':
-      weatherIconClass = Number(time) > 9 ? 'wi wi-night-alt-cloudy' : 'wi wi-day-sunny-overcast u-color-temp-low';
+      weatherIconClass = isDay ? 'wi wi-day-snow-thunderstorm u-color-temp-low' : 'wi wi-night-alt-snow-thunderstorm u-color-temp-low';
       break;
     default:
       weatherIconClass = 'wi wi-alien';
@@ -57,5 +57,5 @@ export default function weatherIcon(desc, time) {
 
 function dayOrNight(time) {
   // returns true for day
-  return (time >= 9 && time <= 18) ? true : false;
+  return time >= 9 && time <= 18;
 }

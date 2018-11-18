@@ -21,6 +21,8 @@ export default function(data, interval) {
   let currData = {};
     // for every 6 hours (4 chunks)
     for (let i = 0; i < data.hourly.length; i+=1) {
+      // add human readable datestring
+      currData.dateString = new Date(data.date).toDateString();
       // if multiple of 6, new chunk
       if (i % interval === 0 && i !== 0) {
         // start new object for new chunk
@@ -44,11 +46,11 @@ export default function(data, interval) {
     mappedData.map((hour, index) => {
       // get average of 6 hours
       Object.keys(hour).forEach(key => {
-        if (key !== 'weatherIconUrl' && key !== 'weatherDesc' && key !== 'weatherCode' && key !== 'winddir16Point') {
+        if (key !== 'dateString' && key !== 'weatherIconUrl' && key !== 'weatherDesc' && key !== 'weatherCode' && key !== 'winddir16Point') {
           hour[key] = Math.floor(hour[key] / interval);
         }
       });
-      // map the times to above times array
+      // map the times and to above times array
       hour.time = interval === 3 ? times['3'][index][0] : times['6'][index][0];
       hour.timeString = interval === 3 ? times['3'][index][1] : times['6'][index][1]
       return hour;
