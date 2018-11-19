@@ -86,5 +86,8 @@
       "\\.(css|less)$": "identity-obj-proxy"
     }
   },
-  "proxy": "https://localhost:3000"
+  "proxy": "https://localhost:3000",
+  "engines": {
+    "node": "10.x"
+  }
 }
