@@ -6,25 +6,26 @@ export default async function getWeather({ date, location }) {
   // base options to use to get
   let promisesToGet = [];
   // since moment date gets mutated, store first
-  const options1EndDate = date.clone().subtract(1, 'years').add(7, 'days');
+  // const options1EndDate = date.clone().subtract(1, 'years').add(7, 'days');
   const options1 = {
     url: 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx',
     method: 'get',
     params: {
       q: location,
       format: 'json',
-      date: date.subtract(1, 'years').format('YYYY-MM-DD'),
-      enddate: options1EndDate,
+      date: date.clone().subtract(1, 'years').format('YYYY-MM-DD'),
+      enddate: date.clone().subtract(1, 'years').add(7, 'days').format('YYYY-MM-DD'),
       key: config.weather,
       tp: 24,
     }
   }
-  const options2 = JSON.parse(JSON.stringify(options1));
-  delete options2.params.enddate;
 
+  const options2 = JSON.parse(JSON.stringify(options1));
+  options2.params.tp = 1;
+  delete options2.params.enddate;
   // deep clone options1
   const options3 = JSON.parse(JSON.stringify(options2));
-  options2.params.date = date.subtract(1, 'years').format('YYYY-MM-DD');
+  options2.params.date = date.clone().subtract(2, 'years').format('YYYY-MM-DD');
 
   promisesToGet.push(
     axios(options1),
@@ -34,6 +35,7 @@ export default async function getWeather({ date, location }) {
 
   try {
     let results = await Promise.all(promisesToGet);
+    console.log(results);
     // map results with inputted location since not returned from api
     results = results.map(result => {
       result.data.data.request[0].location = location;

@@ -10,8 +10,8 @@ import './sass/main.scss';
 const mapStateToProps = (state) => {
   return {
     // TODO: Uncomment after fix styling
-    // data: state.searchReducer.data,
-    data: tempdata
+    data: state.searchReducer.data,
+   //  data: tempdata
   };
 };
 

@@ -15,6 +15,7 @@ export default function weatherIcon(desc, time) {
     case 'Cloudy':
       weatherIconClass = isDay ? 'wi wi-day-cloudy-high u-color-temp-medium' : 'wi wi-night-alt-cloudy';
       break; 
+    case 'Light rain':
     case 'Light rain shower':
       weatherIconClass = isDay ? 'wi wi-day-showers u-color-temp-low' : 'wi wi-night-alt-showers u-color-temp-low-night';
       break;

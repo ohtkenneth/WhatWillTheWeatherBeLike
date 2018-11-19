@@ -9,7 +9,6 @@ export default class Section extends React.Component {
       shouldDisplayContent: props.options.weekly ? true : false,
       contentType: props.options.weekly ? 'weekly-content' : 'daily-content-' + props.options.daily,
     };
-    console.log(this.props);
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(e) {
@@ -18,11 +17,9 @@ export default class Section extends React.Component {
       shouldDisplayContent: !prevState.shouldDisplayContent,
     }));
     // put the selected content into view
-    console.log(document.getElementById(this.state.contentType))
     document.getElementById(this.state.contentType).scrollIntoView(true, { behavior: 'smooth' });
   }
   render() {
-    let intervalsHeading;
     const data = this.props.data;
     const options = this.props.options;
     let dateString = options.weekly 

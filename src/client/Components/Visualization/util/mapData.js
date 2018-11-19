@@ -17,44 +17,53 @@ const times = {
     [18, 'Night (6PM - 12AM)']]
 }
 export default function(data, interval) {
+  // console.log(data.weather[0]);
   let mappedData = [];
   let currData = {};
-    // for every 6 hours (4 chunks)
-    for (let i = 0; i < data.hourly.length; i+=1) {
-      // add human readable datestring
-      currData.dateString = new Date(data.date).toDateString();
-      // if multiple of 6, new chunk
-      if (i % interval === 0 && i !== 0) {
-        // start new object for new chunk
-        mappedData.push(currData);
-        currData = {};
-      }
-      Object.keys(data.hourly[i]).forEach(key => {
-        // if it is not prop with non numerical value
-        if (key === 'winddir16Point' || key === 'weatherIconUrl' || key === 'weatherDesc' || key === 'weatherCode') {
-          // will have prop from last hour in chunk
-          currData[key] = data.hourly[i][key];
-        } else {
-          // add it to currData
-          currData[key] = (parseFloat(currData[key]) || 0) + parseFloat(data.hourly[i][key]);
-        }
-      });
-    }
-    // push in remaining
-    mappedData.push(currData);
-    // map the times and values since they were added up
-    mappedData.map((hour, index) => {
-      // get average of 6 hours
-      Object.keys(hour).forEach(key => {
-        if (key !== 'dateString' && key !== 'weatherIconUrl' && key !== 'weatherDesc' && key !== 'weatherCode' && key !== 'winddir16Point') {
-          hour[key] = Math.floor(hour[key] / interval);
-        }
-      });
-      // map the times and to above times array
-      hour.time = interval === 3 ? times['3'][index][0] : times['6'][index][0];
-      hour.timeString = interval === 3 ? times['3'][index][1] : times['6'][index][1]
-      return hour;
+
+  if (interval === 24) {
+    // give each day its date string
+    return data.weather.map(day => {
+      day.dateString = new Date(day.date).toDateString();
+      return day;
     });
-    // return object with same structure as original data
-    return Object.assign({}, data, { hourly: mappedData });
+  }
+
+  for (let i = 0; i < data.weather[0].hourly.length; i+=1) {
+    // if multiple of 6, new chunk
+    if (i % interval === 0 && i !== 0) {
+      // start new object for new chunk
+      mappedData.push(currData);
+      currData = {};
+    }
+    Object.keys(data.weather[0].hourly[i]).forEach(key => {
+      // if it is not prop with non numerical value
+      if (key === 'winddir16Point' || key === 'weatherIconUrl' || key === 'weatherDesc' || key === 'weatherCode') {
+        // will have prop from last hour in chunk
+        currData[key] = data.weather[0].hourly[i][key];
+      } else {
+        // add it to currData
+        currData[key] = (parseFloat(currData[key]) || 0) + parseFloat(data.weather[0].hourly[i][key]);
+      }
+    });
+  }
+  // push in remaining
+  mappedData.push(currData);
+  // map the times and values since they were added up
+  mappedData.map((hour, index) => {
+    // get average of intervals
+    Object.keys(hour).forEach(key => {
+      if (key !== 'dateString' && key !== 'weatherIconUrl' && key !== 'weatherDesc' && key !== 'weatherCode' && key !== 'winddir16Point') {
+        hour[key] = Math.floor(hour[key] / interval);
+      }
+    });
+    // map the times and to above times array
+    hour.time = interval === 3 ? times['3'][index][0] : times['6'][index][0];
+    hour.timeString = interval === 3 ? times['3'][index][1] : times['6'][index][1];
+    hour.dateString = new Date(data.weather[0].date).toDateString();
+
+    return hour;
+  });
+  // return object with same structure as original data
+  return Object.assign({}, data.weather[0], { hourly: mappedData });
 }
