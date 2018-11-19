@@ -7,69 +7,62 @@ export default class Section extends React.Component {
     super(props); 
     this.state = {
       shouldDisplayContent: props.options.weekly ? true : false,
+      contentType: props.options.weekly ? 'weekly-content' : 'daily-content-' + props.options.daily,
     };
     console.log(this.props);
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(e) {
-    // stuff
-    console.log('i was clicked')
+    e.preventDefault();
     this.setState((prevState) => ({
       shouldDisplayContent: !prevState.shouldDisplayContent,
     }));
+    // put the selected content into view
+    console.log(document.getElementById(this.state.contentType))
+    document.getElementById(this.state.contentType).scrollIntoView(true, { behavior: 'smooth' });
   }
   render() {
     let intervalsHeading;
-    let buttonHeading;
     const data = this.props.data;
     const options = this.props.options;
+    let dateString = options.weekly 
+        ? 'Daily Average Temperature for week of - ' + new Date(data[0].date).toDateString() 
+        : 'Hourly Average Temperature comparison between - ' + data.map(year => new Date(year.date).toDateString()).join(' & ');
 
     if (options.daily === 6) {
-      intervalsHeading = (
-        <>
-          <h1 className="heading--secondary">Date(s): { new Date(data[0].date).toDateString().split(' ').slice(1,3).join(' ') }</h1>
-            <br/>
-          <h1 className="heading--secondary">6 Hour Intervals</h1>
-        </>
-      );
-      buttonHeading = (
-        <>
-          <h1>Daily weather (6 hour intervals)</h1>
-        </>
-      );
+      dateString = (
+        <React.Fragment>
+          <h1 className="heading--secondary">{ dateString }</h1>
+          <h1 className="heading--tertiary">(6 Hour Intervals)</h1>
+        </React.Fragment>
+      ) ;
     } else if (options.daily === 3) {
-      intervalsHeading = (
-        <>
-          <h1 className="heading--secondary">Date(s): { new Date(data[0].date).toDateString().split(' ').slice(1,3).join(' ') }</h1>
-            <br/>
-          <h1 className="heading--secondary">3 Hour Intervals</h1>
-        </>
-      );
-      
-      buttonHeading = (
-        <>
-          <h1>Daily weather (3 hour intervals)</h1>
-        </>
+      dateString = (
+        <React.Fragment>
+          <h1 className="heading--secondary">{ dateString }</h1>
+          <h1 className="heading--tertiary">(3 Hour Intervals)</h1>
+        </React.Fragment>
       );
     } else {
-      intervalsHeading = <h1 className="heading--secondary">Week following: { new Date(data[0].date).toDateString() }</h1>
-      buttonHeading = (
-        <>
-          <h1>Weekly weather</h1>
-        </>
+      dateString = (
+        <React.Fragment>
+          <h1 className="heading--secondary">{ dateString }</h1>
+        </React.Fragment>
       );
     }
     return (
       <div className="visualization__section">
-        <a href="#" className="btn" onClick={ this.handleClick }>Toggle Content</a>
+        <a id={ this.state.contentType } href="#" className="btn btn-secondary" onClick={ this.handleClick }>Toggle Content</a>
+        <br/>
+        { dateString }
         { 
           this.state.shouldDisplayContent ? (
+            // id based on what type of content it is
             <div className="visualization__section__content">
-              { intervalsHeading }
-              <LineGraph
-                data={ data }
-                options={ options }
-              />
+                <LineGraph
+                  data={ data }
+                  options={ options }
+                />
               <div className="visualization__section__content__details">
               {/* if  weekly data, then should not map data as data is single object */}
                 {
@@ -83,7 +76,7 @@ export default class Section extends React.Component {
                 }
               </div>
             </div>
-          ) : <h1>{ buttonHeading }</h1>
+          ) : void 0
         }
       </div>  
     );

@@ -13,7 +13,7 @@ const Details = ({ data, options }) => {
         )
         : (
           <div className="details--general">
-            <h4 className="heading--tertiary">Date: { new Date(data.date).toDateString() }</h4>
+            <h4 className="heading--secondary">Date: { new Date(data.date).toDateString() }</h4>
             <h6 className="heading--quaternary u-color-temp-high">Max Temp: { data.maxtempF + 'F' }</h6>
             <h6 className="heading--quaternary u-color-temp-low">Min Temp: { data.mintempF + 'F' }</h6>
             <h6 className="heading--quaternary">Total snowfall: { data.totalSnow_cm === '0.0' ? 'None!' : data.totalSnow_cm + 'cm' }</h6>

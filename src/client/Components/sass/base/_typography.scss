@@ -4,7 +4,14 @@ body {
   /* font-size: 16px; */
   line-height: 1.7;
   color: #000;
-  padding: 3rem;
+
+  input[type=text] {
+    width: 25rem;
+    margin-right: 1rem;
+    padding: 1rem;
+    border: 1px solid $color-primary;
+    border-radius: 5px;
+  }
 }
 
 .heading--primary {
@@ -22,7 +29,6 @@ body {
 .heading--tertiary {
   font-size: $font-size-tertiary;
   font-weight: 500;
-  padding: 1.5rem 0;
 }
 
 .heading--quaternary {
@@ -40,4 +46,22 @@ body {
 .wi {
   font-size: 5rem;
   padding: 1.5rem 0;
+}
+
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 10px
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media only screen and (max-width : 900px) {
+  html {
+    font-size: 8px;
+  }
 }

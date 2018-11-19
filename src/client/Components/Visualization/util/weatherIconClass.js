@@ -10,7 +10,7 @@ export default function weatherIcon(desc, time) {
       weatherIconClass = isDay ? 'wi wi-day-sunny u-color-temp-high' : 'wi wi-night-clear';
       break;
     case 'Partly cloudy':
-      weatherIconClass = isDay ? 'wi wi-day-cloudy u-color-temp-medium' : 'wi wi-night-partly-cloudy';
+      weatherIconClass = isDay ? 'wi wi-day-cloudy u-color-temp-medium' : 'wi wi-night-alt-partly-cloudy';
       break;
     case 'Cloudy':
       weatherIconClass = isDay ? 'wi wi-day-cloudy-high u-color-temp-medium' : 'wi wi-night-alt-cloudy';
@@ -57,5 +57,5 @@ export default function weatherIcon(desc, time) {
 
 function dayOrNight(time) {
   // returns true for day
-  return time >= 9 && time <= 18;
+  return time >= 9 && time <= 15;
 }

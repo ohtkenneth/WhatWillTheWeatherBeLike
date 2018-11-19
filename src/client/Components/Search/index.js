@@ -48,7 +48,7 @@ export default class Search extends React.Component {
           onChange={ this.handleDateChange } 
         />
         
-        <a href="#" className="btn btn-submit" onClick={ this.handleSubmit }>GET!</a>
+        <a href="#" className="btn btn-submit" onClick={ this.handleSubmit }>Search</a>
       </div>
     );
   }

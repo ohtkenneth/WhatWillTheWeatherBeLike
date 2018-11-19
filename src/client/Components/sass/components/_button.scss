@@ -2,7 +2,7 @@
   &:link,
   &:visited {
     text-decoration: none; 
-    padding: 5rem;
+    padding: 1rem 2rem;
     border-radius: 10px;
     display: inline-block;
     transition: all .2s;
@@ -12,6 +12,45 @@
   }
 
   &:hover {
-    color: blue;
+    transform: translateY(-.3rem);
+    box-shadow: .2rem .5rem 1rem rgba(0,0,0, .5);
+  }
+}
+
+.btn-primary {
+  &:link,
+  &:visited {
+    text-decoration: none; 
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: inline-block;
+    transition: all .2s;
+    position: relative;
+    background-color: $color-primary;
+    color: $text-color-light;
+  }
+  
+  &:hover {
+    transform: translateY(-.3rem);
+    box-shadow: .2rem .5rem 1rem rgba(0,0,0, .5);
+  }
+}
+
+.btn-secondary {
+  &:link,
+  &:visited {
+    text-decoration: none; 
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: inline-block;
+    transition: all .2s;
+    position: relative;
+    background-color: $color-primary;
+    color: $text-color-light;
+  }
+  
+  &:hover {
+    transform: translateY(-.3rem);
+    box-shadow: .2rem .5rem 1rem rgba(0,0,0, .5);
   }
 }
