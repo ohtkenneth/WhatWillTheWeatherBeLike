@@ -1,3 +1,4 @@
+require('dotenv').config();
 const axios = require('axios');
 const weatherApiKey = process.env.WEATHER_API_KEY;
 const moment = require('moment');
@@ -24,6 +25,7 @@ async function getWeather({ dateString, location }) {
   }
 
   const options2 = JSON.parse(JSON.stringify(options1));
+  // tp = 1 for 24 hour data
   options2.params.tp = 1;
   delete options2.params.enddate;
   // deep clone options1
@@ -41,13 +43,8 @@ async function getWeather({ dateString, location }) {
     
     results = results.map(result => {
       return result.data.data;
-    })
-    console.log(results);
-    // map results with inputted location since not returned from api
-    // results = results.map(result => {
-    //   result.data.data.request[0].location = location;
-    //   return result;
-    // });
+    });
+
     return results;
   } catch(err) {
     return err;
