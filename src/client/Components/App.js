@@ -4,6 +4,7 @@ import ErrorBoundry from './ErrorBoundry/index';
 import VisibleSearch from './Search/duck/container';
 // import VisibleVisualization from './Visualization/duck/container';
 import Visualization from './Visualization/index';
+import axios from 'axios';
 import './weather-icons/css/weather-icons.css';
 import './sass/main.scss';
 
@@ -15,8 +16,21 @@ const mapStateToProps = (state) => {
   };
 };
 
+// export default class App extends React.Component {
+// 	constructor(props) {
+// 		super(prop);
+// 		this.state = {
+// 			weatherApiKey: '',
+// 		};
+// 	}
+// 	componentDidMount() {
+// 		const options = {
+// 			url: '/api/key',
+// 			method: 'get',
+// 		}
+// 	}
+// }
 const App = ({ data }) => {
-  console.log(data);
   return (
     <div className="app">
       <ErrorBoundry>
