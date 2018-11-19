@@ -8,7 +8,7 @@ yarn-error.log*
 bundle.js
 style.css
 config.js
-
+coverage
 # Runtime data
 pids
 *.pid

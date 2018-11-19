@@ -1,9 +1,9 @@
+import axios from 'axios';
 export const SEARCH_WEATHER = 'SEARCH_WEATHER';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
 export const REQUEST_WEATHER = 'REQUEST_WEATHER';
 
-import getWeather from '../util/getWeather';
-// payload has properties city, year
+// payload has properties location, year
 export function requestWeather(payload) {
   return {
     type: REQUEST_WEATHER,
@@ -23,14 +23,21 @@ export function getWeatherThunk(payload) {
     // tell store were getting weather
     dispatch(requestWeather(payload));
     // get last 2 years
-    
-    return getWeather(payload)
+    const options = {
+      url: '/api/weather',
+      method: 'get',
+      params: {
+        date: payload.date.format('YYYY-MM-DD'),
+        location: payload.location,
+      },
+    };
+
+    return axios(options)
       .then(
-        results => results.map(result => result.data.data),
+        results => results.data,
         err => console.log(err, err.stack)
       )
       .then(data => {
-        // tell store we've got the data
         dispatch(receiveWeather(data));
       });
   }

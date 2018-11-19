@@ -1,7 +1,6 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
 import moment from "moment";
-import getWeather from './util/getWeather';
 import { getWeatherThunk } from './duck/actions';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -28,7 +27,6 @@ export default class Search extends React.Component {
     // need to extract CITY, STATE, COUNTRY from location object because conflicting location formats 
     // TODO: Include country in location (e.g. Vernon, CA searches Vernon, Canada instead of USA)
     const location = window.autocomplete.getPlace();
-    console.log(location);
     const startIndex = location.adr_address.indexOf('region') + 8;
     // add 1 day to get end date since weatherbit api needs 1 day range over two dates
     const city = location.vicinity.split(' ').join('+') + ', ' + location.adr_address.slice(startIndex, startIndex + 2);

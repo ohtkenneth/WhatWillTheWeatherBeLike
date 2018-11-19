@@ -1,12 +1,15 @@
-const axois = require('axios');
+const axios = require('axios');
 const weatherApiKey = process.env.WEATHER_API_KEY;
+const moment = require('moment');
+const { parse, stringify } = require('flatted/cjs');
 
-export default async function getWeather({ date, location }) {
+async function getWeather({ dateString, location }) {
   // .format('YYYY-MM-DD')
   // base options to use to get
   let promisesToGet = [];
   // since moment date gets mutated, store first
   // const options1EndDate = date.clone().subtract(1, 'years').add(7, 'days');
+  const date = moment(dateString);
   const options1 = {
     url: 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx',
     method: 'get',
@@ -35,14 +38,20 @@ export default async function getWeather({ date, location }) {
 
   try {
     let results = await Promise.all(promisesToGet);
+    
+    results = results.map(result => {
+      return result.data.data;
+    })
     console.log(results);
     // map results with inputted location since not returned from api
-    results = results.map(result => {
-      result.data.data.request[0].location = location;
-      return result;
-    });
+    // results = results.map(result => {
+    //   result.data.data.request[0].location = location;
+    //   return result;
+    // });
     return results;
   } catch(err) {
     return err;
   } 
 }
+
+module.exports = getWeather;

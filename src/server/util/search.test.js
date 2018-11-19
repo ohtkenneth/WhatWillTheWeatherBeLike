@@ -1,8 +1,7 @@
-import getWeather from './util/getWeather';
+import getWeather from '../../client/Components/Search/util/getWeather';
 import moment from 'moment';
-import { connect } from 'http2';
 
-describe('Search component', () => {
+describe('getWeather utility function', () => {
   it('should successfully retrieve data from weatherapi', async (done) => {
     expect.assertions(2);
 
