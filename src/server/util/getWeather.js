@@ -1,6 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const moment = require('moment');
+const { parse, stringify } = require('flatted/cjs');
 
 const weatherApiKey = process.env.WEATHER_API_KEY;
 
@@ -42,7 +43,7 @@ async function getWeather({ dateString, location }) {
 
   try {
     let results = await Promise.all(promisesToGet);
-    
+
     results = results.map(result => {
       return result.data.data;
     });

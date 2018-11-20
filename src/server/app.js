@@ -33,7 +33,8 @@ app.get('/api/weather', (req, res) => {
   }
   getWeather(sanitized)
     .then(results => {
-      res.send(parse(stringify(results)));
+      console.log(JSON.stringify(results));
+      res.send(JSON.stringify(results));
     })
     .catch(err => console.log(err, err.stack));
 });
