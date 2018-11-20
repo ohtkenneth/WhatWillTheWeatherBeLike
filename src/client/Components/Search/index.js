@@ -51,8 +51,8 @@ export default class Search extends React.Component {
       const city = location.vicinity.split(' ').join('+') + ', ' + location.adr_address.slice(startIndex, startIndex + 2) + ', USA';
   
       this.props.dispatch(getWeatherThunk({
-        location: city,
-        date: this.state.dateString,
+        location: xssFilters.inHTMLData(city),
+        date: xssFilters.inHTMLData(this.state.dateString),
       }));
     }
   }

@@ -7,6 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const xssFilters = require('xss-filters');
 const app = express();
 const getWeather = require('./util/getWeather');
 
@@ -24,7 +25,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/weather', (req, res) => {
-  getWeather(req.query)
+  const sanitized = {
+    dateString: xssFilters.inHTMLData(req.query.dateString),
+    location: xssFilters.inHTMLData(req.query.location),
+  }
+  getWeather(sanitized)
     .then(results => {
       res.send(results)
     })
