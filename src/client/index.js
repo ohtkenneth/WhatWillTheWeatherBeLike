@@ -8,6 +8,7 @@ import { createLogger } from 'redux-logger';
 import rootReducer from './Components/rootReducer';
 
 import App from './Components/App';
+import AppRouter from './Components/Router/index';
 const loggerMiddleware = createLogger();
 
 const store = createStore(
@@ -21,7 +22,8 @@ const store = createStore(
 // ReactDOM.render(<App />, document.getElementById('root'));
 render (
   <Provider store={ store }>
-    <App />
+    {/* <App /> */}
+    <AppRouter />
   </Provider>,
   document.getElementById('root')
 );
