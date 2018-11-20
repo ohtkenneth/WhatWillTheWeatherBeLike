@@ -18,7 +18,9 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(express.static(__dirname, { dotfiles: 'allow' } ));
 app.use(morgan('combined', { stream: accessLogStream }))
+
 
 app.get('/', (req, res) => {
   res.sendFile('index.html');
