@@ -43,11 +43,10 @@ async function getWeather({ dateString, location }) {
 
   try {
     let results = await Promise.all(promisesToGet);
-
     results = results.map(result => {
       return result.data.data;
     });
-
+    
     return results;
   } catch(err) {
     return err;
