@@ -33,7 +33,7 @@ async function getWeather({ dateString, location }) {
   // deep clone options1
   const options3 = JSON.parse(JSON.stringify(options2));
   options2.params.date = date.clone().subtract(2, 'years').format('YYYY-MM-DD');
-  console.log(options2, options3);
+  
   promisesToGet.push(
     axios(options1),
     axios(options2),
