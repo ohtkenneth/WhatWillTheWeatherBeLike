@@ -16,5 +16,5 @@ const credentials = {
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(8080);
-httpsServer.listen(PORT);
+httpServer.listen(PORT);
+httpsServer.listen(443);
