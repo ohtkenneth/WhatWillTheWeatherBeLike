@@ -2,4 +2,10 @@ import { connect } from 'react-redux';
 import Search from '../index';
 import { getWeatherThunk } from './actions';
 
-export default connect(null, null)(Search);
+const mapStateToProps = (state) => {
+  return {
+    isGetting: state.searchReducer.isGetting,
+   //  data: tempdata
+  };
+};
+export default connect(mapStateToProps, null)(Search);

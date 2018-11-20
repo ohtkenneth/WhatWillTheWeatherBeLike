@@ -1,5 +1,6 @@
 .search {
   display: flex;
+  position: relative;
 
   &__input {
     position: relative;
@@ -17,5 +18,33 @@
         height: 2rem;
       }
     }
+  }
+
+  &__date {
+    &--validation {
+      position: relative;
+
+      &::after {
+        content: attr(data-validation);
+        display: inline-block;
+        position: absolute;
+        color: $text-color-invalid;
+        font-size: 1.5rem;
+        left: 1rem;
+        top: 5rem;
+        width: 100%;
+        height: 2rem;
+      }
+    }
+  }
+
+  &__preloading {
+    position: absolute;
+    display: block;
+    top: 20rem;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 12rem;
   }
 }

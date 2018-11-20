@@ -12,24 +12,11 @@ const mapStateToProps = (state) => {
   return {
     // TODO: Uncomment after fix styling
     data: state.searchReducer.data,
+    isGetting: false,
    //  data: tempdata
   };
 };
 
-// export default class App extends React.Component {
-// 	constructor(props) {
-// 		super(prop);
-// 		this.state = {
-// 			weatherApiKey: '',
-// 		};
-// 	}
-// 	componentDidMount() {
-// 		const options = {
-// 			url: '/api/key',
-// 			method: 'get',
-// 		}
-// 	}
-// }
 const App = ({ data }) => {
   return (
     <div className="app">
@@ -38,7 +25,6 @@ const App = ({ data }) => {
         {
           data.length > 0 ? <Visualization data={ data } /> : void 0
         }
-
       </ErrorBoundry>
     </div>
   );

@@ -4,6 +4,7 @@ import moment from "moment";
 import { getWeatherThunk } from './duck/actions';
 
 import "react-datepicker/dist/react-datepicker.css";
+const preloading = require('../../../public/loading.gif');
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -17,10 +18,16 @@ export default class Search extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
   }
   handleDateChange(date) {
-    // TODO: only accept dates later than today within 1 year
-    this.setState({
-      date,
-    });
+    // if the selected date is more than a year from today, then invalid
+    let dataValidation = document.querySelector('.search__date--validation');
+    if (Math.abs(date.diff(moment(), 'years', true)) > 1) {
+      dataValidation.setAttribute('data-validation', 'Please select a date within 1 year from today');
+    } else {
+      document.querySelector('.search__date--validation').setAttribute('data-validation', '');
+      this.setState({
+        date,
+      });
+    }
   }
   handleSubmit() {
     // autocomplete input is on window object since defining callback there for after script has loaded
@@ -33,9 +40,7 @@ export default class Search extends React.Component {
     if (!location) {
       // add validation styles
       document.querySelector('.search__input--validation').setAttribute('data-validation', 'Please select a valid location (City, State)');
-      console.log('invalid!')
     } else {
-      console.log(location);
       document.querySelector('.search__input--validation').setAttribute('data-validation', '');
       const startIndex = location.adr_address.indexOf('region') + 8;
       // add 1 day to get end date since weatherbit api needs 1 day range over two dates
@@ -53,12 +58,14 @@ export default class Search extends React.Component {
         <div className="search__input--validation" data-validation="">
           <input id="search" className="search__input" type="text" placeholder="Enter a location"/>
         </div>
-        <DatePicker
-          selected={ this.state.date }
-          onChange={ this.handleDateChange } 
-        />
-        
+        <div className="search__date--validation" data-validation="">
+          <DatePicker
+            selected={ this.state.date }
+            onChange={ this.handleDateChange } 
+          />
+        </div>
         <a href="#" className="btn btn-submit" onClick={ this.handleSubmit }>Search</a>
+        { this.props.isGetting ? <img src={ preloading } className="search__preloading" /> : void 0 }
       </div>
     );
   }
