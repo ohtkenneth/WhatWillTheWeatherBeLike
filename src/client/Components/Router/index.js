@@ -7,6 +7,9 @@ const AppRouter = () => {
   return (
     <Router>
       <nav>
+        <a href="https://github.com/ohtkenneth/WhatWillTheWeatherBeLike" target="_blank">
+          <img className="app__github" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"/>
+        </a>
         <ul className="nav">
           <li>
             <Link style={{ textDecoration: 'none' }} to="/">Search</Link>
@@ -15,10 +18,6 @@ const AppRouter = () => {
             <Link style={{ textDecoration: 'none' }} to="/about">About</Link>
           </li>
         </ul>
-        
-        
-        
-
         <Route exact path="/" component={ AppComponent } />
         <Route path="/about" component={ AboutComponent } />
       </nav>

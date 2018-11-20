@@ -9,15 +9,18 @@ const preloading = require('../../../public/loading.gif');
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
-
+    const currMoment = moment();
     this.state = {
-      date: moment(),
+      date: currMoment,
+      dateString: currMoment.format('YYYY-MM-DD'),
+      location: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
   }
   handleDateChange(date) {
+    console.log(this.state);
     // if the selected date is more than a year from today, then invalid
     let dataValidation = document.querySelector('.search__date--validation');
     if (Math.abs(date.diff(moment(), 'years', true)) > 1) {
@@ -26,14 +29,13 @@ export default class Search extends React.Component {
       document.querySelector('.search__date--validation').setAttribute('data-validation', '');
       this.setState({
         date,
+        dateString: date.format('YYYY-MM-DD'),
       });
     }
   }
   handleSubmit() {
     // autocomplete input is on window object since defining callback there for after script has loaded
     // need to extract CITY, STATE, COUNTRY from location object because conflicting location formats 
-    // TODO: Include country in location (e.g. Vernon, CA searches Vernon, Canada instead of USA)
-
     // check if valid location
     const location = window.autocomplete.getPlace();
     // if location is not google location, will return undefined
@@ -42,13 +44,15 @@ export default class Search extends React.Component {
       document.querySelector('.search__input--validation').setAttribute('data-validation', 'Please select a valid location (City, State)');
     } else {
       document.querySelector('.search__input--validation').setAttribute('data-validation', '');
+      // extract city
       const startIndex = location.adr_address.indexOf('region') + 8;
       // add 1 day to get end date since weatherbit api needs 1 day range over two dates
-      const city = location.vicinity.split(' ').join('+') + ', ' + location.adr_address.slice(startIndex, startIndex + 2);
+      // add 'USA' for more specificity for weatherapi
+      const city = location.vicinity.split(' ').join('+') + ', ' + location.adr_address.slice(startIndex, startIndex + 2) + ', USA';
   
       this.props.dispatch(getWeatherThunk({
         location: city,
-        date: this.state.date,
+        date: this.state.dateString,
       }));
     }
   }

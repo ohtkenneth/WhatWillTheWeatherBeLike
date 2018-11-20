@@ -2,7 +2,7 @@ import React from 'react';
 import mapData from './util/mapData';
 import Section from './Section/index';
 
-const Visualization = ({ data }) => {
+const Visualization = ({ data, location, date }) => {
   const weeklyData = mapData(data[0], 24);
   const sixHourlyData_1 = mapData(data[1], 6);
   const sixHourlyData_2 = mapData(data[2], 6);
@@ -15,14 +15,15 @@ const Visualization = ({ data }) => {
   }
   return (
     <section className="visualization">
-      {/* <h1 className="heading--primary">{ data[1].request[0].query }</h1> */}
+      {/* location is joined with '+' for weather api, join back with spaces for readability */}
+      <h1 className="heading--primary">{ location.split('+').join(' ') }</h1>
       <div>
         {/* Weekly */}
-        <Section data={ weeklyData } options={ { weekly: true } }/>
+        <Section data={ weeklyData } options={ { weekly: true } } date={ date }/>
         {/* Daily, 6 hour interval */}
-        <Section data={ [sixHourlyData_1, sixHourlyData_2] } options= { { daily: 6} } />
+        <Section data={ [sixHourlyData_1, sixHourlyData_2] } options= { { daily: 6} } date={ date }/>
         {/* Daily, 3 hour interval */}
-        <Section data={  [threeHourlyData_1, threeHourlyData_2 ]} options= { { daily: 3} }/>
+        <Section data={  [threeHourlyData_1, threeHourlyData_2 ]} options= { { daily: 3} } date={ date }/>
       </div>
       <a href="#" className="btn" onClick={ handleClick }>Scroll to top</a>
     </section>

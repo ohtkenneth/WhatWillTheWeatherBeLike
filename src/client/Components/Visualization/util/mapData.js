@@ -17,7 +17,6 @@ const times = {
     [18, 'Night (6PM - 12AM)']]
 }
 export default function(data, interval) {
-  // console.log(data.weather[0]);
   let mappedData = [];
   let currData = {};
 
@@ -51,7 +50,7 @@ export default function(data, interval) {
   mappedData.push(currData);
   // map the times and values since they were added up
   mappedData.map((hour, index) => {
-    // get average of intervals
+    // get average of intervals only if numerical properties
     Object.keys(hour).forEach(key => {
       if (key !== 'dateString' && key !== 'weatherIconUrl' && key !== 'weatherDesc' && key !== 'weatherCode' && key !== 'winddir16Point') {
         hour[key] = Math.floor(hour[key] / interval);

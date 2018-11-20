@@ -61,6 +61,17 @@ body {
   }
 }
 
+.link {
+  display: inline-block;
+  color: $color-tertiary;
+  text-decoration: none;
+  transition: all .3s;
+
+  &:hover {
+    transform: translateY(-.3rem);
+  }
+}
+
 @media only screen and (min-width: 1200px) {
   html {
     font-size: 10px

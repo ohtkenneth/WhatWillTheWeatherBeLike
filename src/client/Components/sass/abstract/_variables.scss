@@ -1,7 +1,7 @@
 // COLORS
 $color-primary: #558B9B;
 $color-secondary: #FFFFFF;
-$color-tertiary: #517D82;
+$color-tertiary: #6D5E91;
 
 $color-primary-dark: #231F21;
 $color-primary-light: #FFFFFF;
@@ -19,11 +19,11 @@ $gutter-horizontal: 5rem;
 // FONT
 $default-font-size: 1.3rem;
 
-$btn-color-submit:#00a040;
+$btn-color-submit: $color-tertiary;
 $text-color-light: #fff;
 $text-color-invalid: #d34c42;
 
-$font-size-primary: 3rem;
+$font-size-primary: 3.5rem;
 $font-size-secondary: 2.5rem;
 $font-size-tertiary: 2rem;
 $font-size-quaternary: 1.5rem;

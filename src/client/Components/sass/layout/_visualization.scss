@@ -1,7 +1,9 @@
 .visualization {
+  margin-top: 2rem;
+
   &__section {
     border: 1px solid $color-primary;
-    margin-bottom: 5rem;
+    margin: 1.5rem 0 5rem 0;
     padding: 1.5rem;
 
     &--linegraph {

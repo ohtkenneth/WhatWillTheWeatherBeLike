@@ -2,28 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ErrorBoundry from './ErrorBoundry/index';
 import VisibleSearch from './Search/duck/container';
-// import VisibleVisualization from './Visualization/duck/container';
 import Visualization from './Visualization/index';
-import axios from 'axios';
 import './weather-icons/css/weather-icons.css';
 import './sass/main.scss';
 
 const mapStateToProps = (state) => {
   return {
     // TODO: Uncomment after fix styling
+    date: state.searchReducer.payload.date,
     data: state.searchReducer.data,
-    isGetting: false,
-   //  data: tempdata
+    location: state.searchReducer.payload.location,
+    isGetting: state.searchReducer.isGetting,
   };
 };
 
-const App = ({ data }) => {
+const App = ({ date, data, location, isGetting }) => {
   return (
     <div className="app">
       <ErrorBoundry>
         <VisibleSearch />
         {
-          data.length > 0 ? <Visualization data={ data } /> : void 0
+          data.length > 0 ? <Visualization data={ data } location={ location } date={ date }/> : void 0
         }
       </ErrorBoundry>
     </div>

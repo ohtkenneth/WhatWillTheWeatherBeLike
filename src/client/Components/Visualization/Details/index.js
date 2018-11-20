@@ -1,14 +1,14 @@
 import React from 'react';
 import weatherIconClass from '../util/weatherIconClass';
 
-const Details = ({ data, options }) => {
+const Details = ({ data, options, date }) => {
   return (
     <div className="details">
       {
         options.weekly 
         ? (
           <div className="details--general">
-            This is weekly general data
+            {/* TODO: add relevant weekly data */}
           </div>
         )
         : (

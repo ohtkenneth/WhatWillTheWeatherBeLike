@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
   REQUEST_WEATHER,
   SEARCH_WEATHER,
@@ -6,26 +5,20 @@ import {
 } from './actions';
 
 const initialState = {
-  weather: null,
+  data: [],
+  payload: {},
+  isGetting: false,
 };
 
-function search(state = initialState, action) {
-  if (!state) {
-    return initialState;
-  }
-}
-
 function weather(
-  state = {
-    isGetting: false,
-    data: [],
-  },
+  state = initialState,
   action
 ) {
   switch (action.type) {
     case REQUEST_WEATHER:
       return Object.assign({}, state, {
         isGetting: true,
+        data: [],
         payload: action.payload,
       });
     case SEARCH_WEATHER:
@@ -36,6 +29,7 @@ function weather(
       return Object.assign({}, state, {
         isGetting: false,
         data: action.data,
+        payload: action.payload
       });
     default:
       return state;

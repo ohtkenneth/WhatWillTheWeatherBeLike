@@ -1,8 +1,8 @@
 require('dotenv').config();
 const axios = require('axios');
-const weatherApiKey = process.env.WEATHER_API_KEY;
 const moment = require('moment');
-const { parse, stringify } = require('flatted/cjs');
+
+const weatherApiKey = process.env.WEATHER_API_KEY;
 
 async function getWeather({ dateString, location }) {
   // .format('YYYY-MM-DD')
@@ -10,15 +10,16 @@ async function getWeather({ dateString, location }) {
   let promisesToGet = [];
   // since moment date gets mutated, store first
   // const options1EndDate = date.clone().subtract(1, 'years').add(7, 'days');
-  const date = moment(dateString);
+  const date = moment(dateString).add(1, 'days');
+
   const options1 = {
     url: 'https://api.worldweatheronline.com/premium/v1/past-weather.ashx',
     method: 'get',
     params: {
       q: location,
       format: 'json',
-      date: date.clone().subtract(1, 'years').format('YYYY-MM-DD'),
-      enddate: date.clone().subtract(1, 'years').add(7, 'days').format('YYYY-MM-DD'),
+      date: date.clone().subtract(1, 'years').subtract(3, 'days').format('YYYY-MM-DD'),
+      enddate: date.clone().subtract(1, 'years').add(3, 'days').format('YYYY-MM-DD'),
       key: weatherApiKey,
       tp: 24,
     }
@@ -27,11 +28,12 @@ async function getWeather({ dateString, location }) {
   const options2 = JSON.parse(JSON.stringify(options1));
   // tp = 1 for 24 hour data
   options2.params.tp = 1;
+  options2.params.date = date.clone().subtract(1, 'years').format('YYYY-MM-DD');
   delete options2.params.enddate;
   // deep clone options1
   const options3 = JSON.parse(JSON.stringify(options2));
   options2.params.date = date.clone().subtract(2, 'years').format('YYYY-MM-DD');
-
+  console.log(options2, options3);
   promisesToGet.push(
     axios(options1),
     axios(options2),

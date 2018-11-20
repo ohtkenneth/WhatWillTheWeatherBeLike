@@ -19,10 +19,8 @@ const store = createStore(
   )
 );
 
-// ReactDOM.render(<App />, document.getElementById('root'));
 render (
   <Provider store={ store }>
-    {/* <App /> */}
     <AppRouter />
   </Provider>,
   document.getElementById('root')

@@ -9,12 +9,15 @@ export default function weatherIcon(desc, time) {
     case 'Clear':
       weatherIconClass = isDay ? 'wi wi-day-sunny u-color-temp-high' : 'wi wi-night-clear';
       break;
-    case 'Partly cloudy':
+    case 'Overcast':
       weatherIconClass = isDay ? 'wi wi-day-cloudy u-color-temp-medium' : 'wi wi-night-alt-partly-cloudy';
       break;
     case 'Cloudy':
       weatherIconClass = isDay ? 'wi wi-day-cloudy-high u-color-temp-medium' : 'wi wi-night-alt-cloudy';
       break; 
+    case 'Light drizzle':
+      weatherIconClass = isDay ? 'wi wi-day-sprinkle u-color-temp-low' : 'wi wi-night-alt-sprinkle u-color-temp-low-night';
+      break;
     case 'Light rain':
     case 'Light rain shower':
       weatherIconClass = isDay ? 'wi wi-day-showers u-color-temp-low' : 'wi wi-night-alt-showers u-color-temp-low-night';
@@ -22,6 +25,7 @@ export default function weatherIcon(desc, time) {
     case 'Moderate or heavy rain shower':
     case 'Moderate rain at times':
     case 'Moderate rain':
+    case 'Heavy rain':
       weatherIconClass = isDay ? 'wi wi-day-rain u-color-temp-low' : 'wi wi-night-alt-rain u-color-temp-low-night';
       break;
     case 'Patchy light rain':
@@ -33,7 +37,7 @@ export default function weatherIcon(desc, time) {
     case 'Freezing fog':
       weatherIconClass = isDay ? 'wi wi-day-haze u-color-temp-low' : 'wi wi-night-fog u-color-temp-low-night';
       break;
-    case 'Overcast':
+    case 'Partly cloudy':
       weatherIconClass = isDay ? 'wi wi-day-sunny-overcast u-color-temp-medium' : 'wi wi-night-alt-cloudy';
       break;
     case 'Patchy light snow':
@@ -47,6 +51,9 @@ export default function weatherIcon(desc, time) {
       break;
     case 'Moderate or heavy snow with thunder':
       weatherIconClass = isDay ? 'wi wi-day-snow-thunderstorm u-color-temp-low' : 'wi wi-night-alt-snow-thunderstorm u-color-temp-low';
+      break;
+    case 'Moderate or heavy rain with thunder':
+      weatherIconClass = isDay ? 'wi wi-day-storm-showers u-color-temp-low' : 'wi wi-storm-showers u-color-temp-low';
       break;
     default:
       weatherIconClass = 'wi wi-alien';

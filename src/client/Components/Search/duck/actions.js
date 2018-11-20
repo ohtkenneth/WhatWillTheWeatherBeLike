@@ -11,10 +11,11 @@ export function requestWeather(payload) {
   };
 }
 
-export function receiveWeather(data) {
+export function receiveWeather(data, payload) {
   return {
     type: RECEIVE_WEATHER,
     data,
+    payload,
   };
 }
 
@@ -27,7 +28,7 @@ export function getWeatherThunk(payload) {
       url: '/api/weather',
       method: 'get',
       params: {
-        date: payload.date.format('YYYY-MM-DD'),
+        dateString: payload.date,
         location: payload.location,
       },
     };
@@ -38,7 +39,7 @@ export function getWeatherThunk(payload) {
         err => console.log(err, err.stack)
       )
       .then(data => {
-        dispatch(receiveWeather(data));
+        dispatch(receiveWeather(data, payload));
       });
   }
 }

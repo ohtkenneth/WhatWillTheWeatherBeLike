@@ -5,6 +5,7 @@ import Details from '../Details/index';
 export default class Section extends React.Component {
   constructor(props) {
     super(props); 
+    // recieves options from visualization/index once thunk action has retrieved data
     this.state = {
       shouldDisplayContent: props.options.weekly ? true : false,
       contentType: props.options.weekly ? 'weekly-content' : 'daily-content-' + props.options.daily,
@@ -22,8 +23,9 @@ export default class Section extends React.Component {
   render() {
     const data = this.props.data;
     const options = this.props.options;
+    const date = new Date(this.props.date).toDateString();
     let dateString = options.weekly 
-        ? 'Daily Average Temperature for week of - ' + new Date(data[0].date).toDateString() 
+        ? 'Daily Average Temperature of week around - ' + date 
         : 'Hourly Average Temperature comparison between - ' + data.map(year => new Date(year.date).toDateString()).join(' & ');
 
     if (options.daily === 6) {
@@ -59,6 +61,7 @@ export default class Section extends React.Component {
                 <LineGraph
                   data={ data }
                   options={ options }
+                  date={ date }
                 />
               <div className="visualization__section__content__details">
               {/* if  weekly data, then should not map data as data is single object */}
@@ -68,6 +71,7 @@ export default class Section extends React.Component {
                       key={ 'daily' + index }
                       data={ year }
                       options={ options } 
+                      date= { date }
                     />
                   ))
                 }
