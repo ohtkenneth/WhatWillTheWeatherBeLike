@@ -38,8 +38,8 @@ app.get('/api/weather', (req, res) => {
     .catch(err => console.log(err, err.stack));
 });
 
-app.get('*', (req, res) => {
-  res.redirect('/');
-});
+// app.get('*', (req, res) => {
+//   res.redirect('/');
+// });
 
 module.exports = app;
