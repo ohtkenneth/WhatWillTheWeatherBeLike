@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const xssFilters = require('xss-filters');
+const { parse, stringify } = require('flatted/cjs');
 const app = express();
 const getWeather = require('./util/getWeather');
 
@@ -32,7 +33,7 @@ app.get('/api/weather', (req, res) => {
   }
   getWeather(sanitized)
     .then(results => {
-      res.send(results)
+      res.send(parse(stringify(results)));
     })
     .catch(err => console.log(err, err.stack));
 });
