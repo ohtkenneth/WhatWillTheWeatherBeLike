@@ -45,6 +45,7 @@ export default function weatherIcon(desc, time) {
       weatherIconClass = isDay ? 'wi wi-day-snow u-color-temp-medium' : 'wi wi-night-alt-snow u-color-temp-low-night';
       break;
     case 'Moderate snow':
+    case 'Patchy moderate snow':
     case 'Moderate or heavy snow':
     case 'Heavy snow':
       weatherIconClass = isDay ? 'wi wi-day-snow-wind u-color-temp-low' : 'wi wi-night-alt-showers u-color-temp-low';
@@ -55,6 +56,10 @@ export default function weatherIcon(desc, time) {
     case 'Moderate or heavy rain with thunder':
       weatherIconClass = isDay ? 'wi wi-day-storm-showers u-color-temp-low' : 'wi wi-storm-showers u-color-temp-low';
       break;
+    case 'Thundery outbreaks possible':
+      weatherIconClass = isDay ? 'wi wi-day-lightning' : 'wi wi-thunderstorm';
+      break;
+
     default:
       weatherIconClass = 'wi wi-alien';
       break;
