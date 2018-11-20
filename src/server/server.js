@@ -1,6 +1,20 @@
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const app = require('./app');
-const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log('WWTWBL Listening on ' + PORT);
-});
+const PORT = process.env.PORT || 3000;
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/whatwilltheweatherbelike.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/whatwilltheweatherbelike.com/fullchain.pem', 'utf8');
+
+const credentials = {
+  key: privateKey,
+  cert: certificate
+}
+
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(8080);
+httpsServer.listen(PORT);

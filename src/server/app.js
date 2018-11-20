@@ -21,7 +21,6 @@ app.use(express.static(path.join(__dirname, '../../dist')));
 app.use(express.static(__dirname, { dotfiles: 'allow' } ));
 app.use(morgan('combined', { stream: accessLogStream }))
 
-
 app.get('/', (req, res) => {
   res.sendFile('index.html');
 });
@@ -38,15 +37,8 @@ app.get('/api/weather', (req, res) => {
     .catch(err => console.log(err, err.stack));
 });
 
-app.get('/.well-known*', (req, res) => {
-  fs.readFile('./.well-known/.acme-challenge/challenge.txt', (err, data) => {
-    if (err) throw err;
-    else res.send(data);
-  });
-})
-
-// app.get('*', (req, res) => {
-//   res.redirect('/');
-// });
+app.get('*', (req, res) => {
+  res.redirect('/');
+});
 
 module.exports = app;
