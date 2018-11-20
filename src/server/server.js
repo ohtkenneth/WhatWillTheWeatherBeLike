@@ -6,7 +6,7 @@ const app = require('./app');
 const PORT = process.env.PORT || 3000;
 // Certificate
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/whatwilltheweatherbelike.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/whatwilltheweatherbelike.com/fullchain.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/whatwilltheweatherbelike.com/cert.pem', 'utf8');
 
 const credentials = {
   key: privateKey,
