@@ -29,6 +29,8 @@ export default function weatherIcon(desc, time) {
       weatherIconClass = isDay ? 'wi wi-day-rain u-color-temp-low' : 'wi wi-night-alt-rain u-color-temp-low-night';
       break;
     case 'Patchy light rain':
+    case 'Light freezing rain':
+    case 'Patchy light drizzle':
     case 'Patchy rain possible':
       weatherIconClass = isDay ? 'wi wi-day-rain-mix u-color-temp-low' : 'wi wi-night-alt-rain-mix u-color-temp-low-night';
       break;
@@ -41,12 +43,14 @@ export default function weatherIcon(desc, time) {
       weatherIconClass = isDay ? 'wi wi-day-sunny-overcast u-color-temp-medium' : 'wi wi-night-alt-cloudy';
       break;
     case 'Patchy light snow':
+    case 'Light snow showers':
     case 'Light snow':
       weatherIconClass = isDay ? 'wi wi-day-snow u-color-temp-medium' : 'wi wi-night-alt-snow u-color-temp-low-night';
       break;
     case 'Moderate snow':
     case 'Patchy moderate snow':
     case 'Moderate or heavy snow':
+    case 'Moderate or heavy snow showers':
     case 'Heavy snow':
       weatherIconClass = isDay ? 'wi wi-day-snow-wind u-color-temp-low' : 'wi wi-night-alt-showers u-color-temp-low';
       break;
@@ -59,7 +63,18 @@ export default function weatherIcon(desc, time) {
     case 'Thundery outbreaks possible':
       weatherIconClass = isDay ? 'wi wi-day-lightning' : 'wi wi-thunderstorm';
       break;
-
+    case 'Light sleet':
+    case 'Patchy sleet':
+    case 'Patchy sleet possible':
+      weatherIconClass = isDay ? 'wi wi-day-sleet u-color-temp-low' : 'wi wi-night-alt-sleet u-color-temp-low-night';
+      break;
+    case 'Moderate or heavy sleet':
+    case 'Moderate sleet':
+    case 'Heavy sleet':
+      weatherIconClass = isDay ? 'wi wi-day-sleet-storm u-color-temp-low' : 'wi wi-night-alt-sleet-storm u-color-temp-low-night';
+      break;
+    case 'Torrential rain shower':
+      weatherIconClass = 'wi wi-rain u-color-temp-low-night'
     default:
       weatherIconClass = 'wi wi-alien';
       break;
