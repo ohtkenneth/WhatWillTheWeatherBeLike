@@ -20,9 +20,9 @@ export default class Search extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
   }
   handleDateChange(date) {
-    console.log(this.state);
     // if the selected date is more than a year from today, then invalid
     let dataValidation = document.querySelector('.search__date--validation');
+    
     if (Math.abs(date.diff(moment(), 'years', true)) > 1) {
       dataValidation.setAttribute('data-validation', 'Please select a date within 1 year from today');
     } else {

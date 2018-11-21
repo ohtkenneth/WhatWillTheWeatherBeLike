@@ -17,17 +17,5 @@
     <div id="root"></div>
     <script src="./bundle.js"></script>
     <script src="/xss-filters.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_ODz_Za267SsVL-psqPfFkG-JSejtJrs&libraries=places&callback=init"
-        async defer></script>
-    <script>
-
-      function init() {
-        const options = {
-          types: ['(cities)'],
-          componentRestrictions: { country: 'us' },
-        };
-        window.autocomplete = new google.maps.places.Autocomplete(document.getElementById('search'), options);
-      }
-    </script>
   </body>
 </html>
