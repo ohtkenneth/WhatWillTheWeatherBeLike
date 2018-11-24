@@ -27,7 +27,6 @@ export default class Search extends React.Component {
       dataValidation.setAttribute('data-validation', 'Please select a date within 1 year from today');
     } else {
       document.querySelector('.search__date--validation').setAttribute('data-validation', '');
-      console.log(date);
       this.setState({
         date,
         dateString: date.format('YYYY-MM-DD'),
