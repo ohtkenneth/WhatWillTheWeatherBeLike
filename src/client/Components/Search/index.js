@@ -27,6 +27,7 @@ export default class Search extends React.Component {
       dataValidation.setAttribute('data-validation', 'Please select a date within 1 year from today');
     } else {
       document.querySelector('.search__date--validation').setAttribute('data-validation', '');
+      console.log(date);
       this.setState({
         date,
         dateString: date.format('YYYY-MM-DD'),
@@ -49,7 +50,7 @@ export default class Search extends React.Component {
       // add 1 day to get end date since weatherbit api needs 1 day range over two dates
       // add 'USA' for more specificity for weatherapi
       const city = location.vicinity.split(' ').join('+') + ', ' + location.adr_address.slice(startIndex, startIndex + 2) + ', USA';
-  
+
       this.props.dispatch(getWeatherThunk({
         location: xssFilters.inHTMLData(city),
         date: xssFilters.inHTMLData(this.state.dateString),

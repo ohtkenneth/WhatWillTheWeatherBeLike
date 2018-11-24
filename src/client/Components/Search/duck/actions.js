@@ -39,7 +39,6 @@ export function getWeatherThunk(payload) {
         err => console.log(err, err.stack)
       )
       .then(data => {
-        console.log(data);
         dispatch(receiveWeather(data, payload));
       });
   }
