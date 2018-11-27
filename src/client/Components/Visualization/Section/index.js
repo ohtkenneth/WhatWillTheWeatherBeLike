@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LineGraph from '../LineGraph/index';
 import Details from '../Details/index';
 import moment from 'moment';
@@ -83,4 +84,10 @@ export default class Section extends React.Component {
       </div>  
     );
   }
-}
+};
+
+Section.propTypes = {
+  options: PropTypes.object,
+  data: PropTypes.array,
+  date: PropTypes.string,
+};

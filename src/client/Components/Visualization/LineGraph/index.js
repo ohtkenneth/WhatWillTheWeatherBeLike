@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 
 // doesnt care about hours
@@ -76,6 +77,12 @@ const LineGraph = ({ data, options, date }) => {
       />
     </div>
   );
+};
+
+LineGraph.propTypes = {
+  data: PropTypes.array,
+  options: PropTypes.object,
+  date: PropTypes.string,
 };
 
 export default LineGraph;

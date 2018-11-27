@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import { getWeatherThunk } from './duck/actions';

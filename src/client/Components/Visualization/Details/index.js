@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import weatherIconClass from '../util/weatherIconClass';
 
-const Details = ({ data, options, date }) => {
+const Details = ({ data, options }) => {
   return (
     <div className="details">
       {
@@ -79,7 +80,12 @@ const Details = ({ data, options, date }) => {
       }
       </div>
     </div>
-  )
+  );
+};
+
+Details.propTypes = {
+  data: PropTypes.array || PropTypes.object,
+  options: PropTypes.object,
 };
 
 export default Details;

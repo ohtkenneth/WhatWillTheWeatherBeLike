@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import mapData from './util/mapData';
 import Section from './Section/index';
 
@@ -28,6 +29,12 @@ const Visualization = ({ data, location, date }) => {
       <a href="#" className="btn" onClick={ handleClick }>Scroll to top</a>
     </section>
   );
+};
+
+Visualization.propTypes = {
+  data: PropTypes.array,
+  location: PropTypes.string,
+  date: PropTypes.string,
 };
 
 export default Visualization;
